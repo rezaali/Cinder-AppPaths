@@ -31,7 +31,7 @@ namespace paths {
 bool createDirectory( const ci::fs::path &path );
 bool createDirectories( const ci::fs::path &path );
 
-ci::fs::path addPath(const ci::fs::path &prefix, const std::string &path, const std::string &seperator = "" );
+ci::fs::path addPath( const ci::fs::path &prefix, const std::string &path, const std::string &seperator = "" );
 ci::fs::path getPath( const std::string &path = "" );
 ci::fs::path getShadersPath( const std::string &path = "" );
 ci::fs::path getSettingsPath( const std::string &path = "" );
