@@ -31,9 +31,35 @@ namespace paths {
 bool createDirectory( const ci::fs::path &path );
 bool createDirectories( const ci::fs::path &path );
 
+void copyDirectory( const ci::fs::path &fromPath, const ci::fs::path &toPath );
+
 ci::fs::path addPath( const ci::fs::path &prefix, const std::string &path, const std::string &seperator = "" );
-ci::fs::path getPath( const std::string &path = "" );
-ci::fs::path getShadersPath( const std::string &path = "" );
-ci::fs::path getSettingsPath( const std::string &path = "" );
+
+ci::fs::path getResourcesPath( const std::string &path = "" );
+ci::fs::path getResourcesAssetsPath( const std::string &path = "" );
+ci::fs::path getResourcesImagesAssetsPath( const std::string &path = "" );
+ci::fs::path getResourcesJsonAssetsPath( const std::string &path = "" );
+
+ci::fs::path getResourcesDefaultPath( const std::string &path = "" );
+ci::fs::path getResourcesDefaultSettingsPath( const std::string &path = "" );
+ci::fs::path getResourcesDefaultShadersPath( const std::string &path = "" );
+
+ci::fs::path getResourcesWorkingPath( const std::string &path = "" );
+ci::fs::path getResourcesWorkingSettingsPath( const std::string &path = "" );
+ci::fs::path getResourcesWorkingShadersPath( const std::string &path = "" );
+
+ci::fs::path getAppSupportPath( const std::string &path = "" );
+ci::fs::path getAppSupportAssetsPath( const std::string &path = "" );
+ci::fs::path getAppSupportImageAssetsPath( const std::string &path = "" );
+ci::fs::path getAppSupportJsonAssetsPath( const std::string &path = "" );
+
+ci::fs::path getAppSupportDefaultSessionPath( const std::string &path = "" );
+ci::fs::path getAppSupportDefaultSessionSettingsPath( const std::string &path = "" );
+ci::fs::path getAppSupportDefaultSessionShadersPath( const std::string &path = "" );
+
+ci::fs::path getAppSupportWorkingSessionPath( const std::string &path = "" );
+ci::fs::path getAppSupportWorkingSessionSettingsPath( const std::string &path = "" );
+ci::fs::path getAppSupportWorkingSessionShadersPath( const std::string &path = "" );
+
 } // namespace paths
 } // namespace reza
