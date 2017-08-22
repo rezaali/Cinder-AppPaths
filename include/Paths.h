@@ -32,7 +32,7 @@ bool createDirectory( const ci::fs::path &path );
 bool createDirectories( const ci::fs::path &path );
 
 void copyDirectory( const ci::fs::path &fromPath, const ci::fs::path &toPath );
-
+bool copyDirectoryRecursively( const ci::fs::path &fromPath, const ci::fs::path &toPath );
 ci::fs::path addPath( const ci::fs::path &prefix, const std::string &path, const std::string &seperator = "" );
 
 ci::fs::path getResourcesPath( const std::string &path = "" );
