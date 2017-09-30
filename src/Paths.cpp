@@ -33,12 +33,30 @@ void copyDirectory( const fs::path &fromPath, const fs::path &toPath )
 {
     map<fs::path, fs::path> directories;
     directories[fs::path( "" )] = fromPath;
+    fs::path fromFolderName = fromPath.filename();
 
     fs::recursive_directory_iterator it( fromPath ), eit;
     for( ; it != eit; ++it ) {
         fs::path pth = it->path();
         if( fs::is_directory( pth ) ) {
-            directories[pth.filename()] = pth;
+            fs::path pthFolder = pth;
+            vector<fs::path> subFolders = { pthFolder.filename() };
+            pthFolder.remove_filename();
+            while( pthFolder.filename() != fromFolderName ) {
+                subFolders.push_back(pthFolder.filename());
+                pthFolder.remove_filename();
+            }
+            
+            fs::path subFolder;
+            auto rit = subFolders.rbegin();
+            for (; rit!= subFolders.rend(); ++rit)
+            {
+                if( !subFolder.empty() ) {
+                    subFolder += fs::path::preferred_separator;
+                }
+                subFolder += *rit;
+            }
+            directories[subFolder] = pth;
         }
     }
 
@@ -50,7 +68,7 @@ void copyDirectory( const fs::path &fromPath, const fs::path &toPath )
         if( !it.first.empty() ) {
             dir += "/";
             dir += it.first;
-            createDirectory( dir );
+            createDirectories( dir );
         }
 
         fs::directory_iterator dit( it.second ), deit;
@@ -61,9 +79,10 @@ void copyDirectory( const fs::path &fromPath, const fs::path &toPath )
                     fs::path to = dir;
                     to += "/";
                     to += from.filename();
-                    if( fs::exists( to ) ) {
+                    if( fs::exists( to ) ) {                        
                         fs::remove( to );
                     }
+                    
                     fs::copy( from, to );
                 }
             }
