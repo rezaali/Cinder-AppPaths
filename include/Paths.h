@@ -29,6 +29,7 @@ SOFTWARE.
 namespace reza {
 namespace paths {
 bool createDirectory( const ci::fs::path &path );
+bool removeDirectory( const ci::fs::path &path );
 bool createDirectories( const ci::fs::path &path );
 
 void copyDirectory( const ci::fs::path &fromPath, const ci::fs::path &toPath );
@@ -48,9 +49,12 @@ ci::fs::path getResourcesWorkingPath( const std::string &path = "" );
 ci::fs::path getResourcesWorkingSettingsPath( const std::string &path = "" );
 ci::fs::path getResourcesWorkingShadersPath( const std::string &path = "" );
 
+ci::fs::path getResourcesPresetsPath( const std::string &path = "" );
+
 ci::fs::path getAppSupportPath( const std::string &path = "" );
 ci::fs::path getAppSupportAssetsPath( const std::string &path = "" );
 ci::fs::path getAppSupportImageAssetsPath( const std::string &path = "" );
+ci::fs::path getAppSupportModelAssetsPath( const std::string &path = "" );
 ci::fs::path getAppSupportJsonAssetsPath( const std::string &path = "" );
 
 ci::fs::path getAppSupportDefaultSessionPath( const std::string &path = "" );
@@ -61,5 +65,7 @@ ci::fs::path getAppSupportWorkingSessionPath( const std::string &path = "" );
 ci::fs::path getAppSupportWorkingSessionSettingsPath( const std::string &path = "" );
 ci::fs::path getAppSupportWorkingSessionShadersPath( const std::string &path = "" );
 
+    
+ci::fs::path getAppSupportPresetsSessionPath( const std::string &path = "" );
 } // namespace paths
 } // namespace reza
