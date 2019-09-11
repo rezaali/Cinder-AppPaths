@@ -18,13 +18,13 @@ bool createDirectory( const fs::path &path )
 		return true;
 	}
 }
-    
+
 bool removeDirectory( const fs::path &path )
-{    
-    if( fs::exists( path ) ) {
-        return fs::remove( path );
-    }
-    return false;
+{
+	if( fs::exists( path ) ) {
+		return fs::remove( path );
+	}
+	return false;
 }
 
 bool createDirectories( const fs::path &path )
@@ -170,7 +170,15 @@ fs::path addPath( const fs::path &prefix, const string &path, const string &sepe
 
 fs::path getResourcesPath( const string &path )
 {
+#if defined( CINDER_MSW_DESKTOP )
+	auto assetDirectories = ci::app::Platform::get()->getAssetDirectories();
+	if( assetDirectories.size() > 0 ) {
+		return addPath( assetDirectories.at( 0 ), path );
+	}
+	return ci::app::Platform::get()->getAssetPath( path );
+#else
 	return addPath( ci::app::Platform::get()->getResourceDirectory(), path );
+#endif
 }
 
 fs::path getResourcesAssetsPath( const string &path )
@@ -225,7 +233,7 @@ fs::path getResourcesPresetsPath( const string &path )
 
 fs::path getAppSupportPath( const string &path )
 {
-	return addPath( ci::app::Platform::get()->getHomeDirectory().remove_trailing_separator(), path );
+	return addPath( addPath( ci::app::Platform::get()->getHomeDirectory(), TRANSFORM_PATH ), path );
 }
 
 fs::path getAppSupportAssetsPath( const string &path )
